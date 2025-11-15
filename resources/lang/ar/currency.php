@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'currencies' => 'العملات',
+    'currency_management' => 'إدارة العملات',
+    'add_new' => 'إضافة عملة جديدة',
+    'currency_name' => 'اسم العملة',
+    'currency_code' => 'رمز العملة',
+    'exchange_rate' => 'سعر الصرف',
+    'actions' => 'الإجراءات',
+    'edit' => 'تعديل',
+    'delete' => 'حذف',
+    'save' => 'حفظ',
+    'cancel' => 'إلغاء',
+    'are_you_sure' => 'هل أنت متأكد؟',
+    'delete_confirm' => 'لن تتمكن من التراجع عن هذا!',
+    'success' => 'نجاح',
+    'currency_added' => 'تمت إضافة العملة بنجاح',
+    'currency_updated' => 'تم تحديث العملة بنجاح',
+    'currency_deleted' => 'تم حذف العملة بنجاح',
+    'from_currency' => 'من العملة',
+    'to_currency' => 'إلى العملة',
+    'manage_currencies' => 'إدارة سعر الصرف',
+    'updated_successfully' => 'تم تحديث سعر الصرف بنجاح',
+    'failed_to_update_currency_rate' => 'فشل تحديث سعر الصرف',
+]; 

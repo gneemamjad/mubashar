@@ -1,0 +1,23 @@
+/* RTL Support */
+body[dir="rtl"] {
+    text-align: right;
+}
+
+body[dir="rtl"] .header .container-fluid {
+    flex-direction: row-reverse;
+}
+
+body[dir="rtl"] .table th,
+body[dir="rtl"] .table td {
+    text-align: right;
+}
+
+body[dir="rtl"] .input-group .input-group-text {
+    border-radius: 0 4px 4px 0;
+}
+
+body[dir="rtl"] .input-group input {
+    border-radius: 4px 0 0 4px;
+}
+
+/* Add more RTL specific styles as needed */ 

@@ -1,0 +1,18 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appIDs": [
+          "ZUAJCQXDV4.tr.mubashar.mubashar"
+        ],
+        "components": [
+          {
+            "/": "*",
+            "comment": "Matches all paths under the domain"
+          }
+        ]
+      }
+    ]
+  }
+}

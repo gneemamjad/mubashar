@@ -1,0 +1,31 @@
+<?php
+
+return [
+    'areas' => 'Areas',
+    'area_management' => 'Area Management',
+    'add_new' => 'Add New Area',
+    'area_name' => 'Area Name',
+    'area_code' => 'Area Code',
+    'city' => 'City',
+    'status' => 'Status',
+    'actions' => 'Actions',
+    'edit' => 'Edit',
+    'delete' => 'Delete',
+    'save' => 'Save',
+    'cancel' => 'Cancel',
+    'active' => 'Active',
+    'inactive' => 'Inactive',
+    'are_you_sure' => 'Are you sure?',
+    'delete_confirm' => 'You won\'t be able to revert this!',
+    'success' => 'Success',
+    'area_added' => 'Area has been added successfully',
+    'area_updated' => 'Area has been updated successfully',
+    'area_deleted' => 'Area has been deleted successfully',
+    'manage_areas' => 'Manage Areas',
+    'description' => 'Description',
+    'select_city' => 'Select City',
+    'per_page' => 'per page',
+    'show' => 'Show',
+    'close' => 'Close',
+    'search_areas' => 'Search areas'
+]; 

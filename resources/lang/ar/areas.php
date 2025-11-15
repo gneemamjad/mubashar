@@ -1,0 +1,31 @@
+<?php
+
+return [
+    'areas' => 'المناطق',
+    'area_management' => 'إدارة المناطق',
+    'add_new' => 'إضافة منطقة جديدة',
+    'area_name' => 'اسم المنطقة',
+    'area_code' => 'رمز المنطقة',
+    'city' => 'المدينة',
+    'status' => 'الحالة',
+    'actions' => 'الإجراءات',
+    'edit' => 'تعديل',
+    'delete' => 'حذف',
+    'save' => 'حفظ',
+    'cancel' => 'إلغاء',
+    'active' => 'نشط',
+    'inactive' => 'غير نشط',
+    'are_you_sure' => 'هل أنت متأكد؟',
+    'delete_confirm' => 'لن تتمكن من التراجع عن هذا!',
+    'success' => 'نجاح',
+    'area_added' => 'تمت إضافة المنطقة بنجاح',
+    'area_updated' => 'تم تحديث المنطقة بنجاح',
+    'area_deleted' => 'تم حذف المنطقة بنجاح',
+    'manage_areas' => 'إدارة المناطق',
+    'description' => 'الوصف',
+    'select_city' => 'اختر المدينة',
+    'per_page' => 'عدد الصفوف في الصفحة',
+    'show' => 'عرض',
+    'close' => 'إغلاق',
+    'search_areas' => 'ابحث عن منطقة'
+]; 

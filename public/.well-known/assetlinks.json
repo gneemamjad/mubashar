@@ -1,0 +1,15 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.get_login_creds",
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "tr.mubashar.mubashar",
+      "sha256_cert_fingerprints": [
+        "9F:1F:07:3F:78:CD:82:91:84:DD:C7:B0:9F:CB:00:79:A8:60:A4:FD:DF:31:43:95:84:5B:BA:F4:4E:80:66:DF"
+      ]
+    }
+  }
+]
