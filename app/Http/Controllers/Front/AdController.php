@@ -18,62 +18,48 @@ use Illuminate\Support\Facades\Log;
 
 class AdController extends Controller
 {
-    protected $adRepository;
-    protected $adService;
-    protected $bannerService;
-    protected $attributeService;
-
     public function __construct(
-            AdRepository $adRepository,
-            AdService $adService,
-            BannerService $bannerService
-    )
-    {
-        $this->adRepository = $adRepository;
-        $this->adService = $adService;
-        $this->bannerService = $bannerService;
+        private readonly AdRepository $adRepository,
+        private readonly AdService $adService,
+        private readonly BannerService $bannerService,
+    ) {
     }
-    public function home(Request $request, $category = null)
+
+    /**
+     * Render the home page ads view.
+     */
+    public function home(Request $request, ?int $category = null)
     {
-        $category = $category ?? 1;
-        $request['category_id'] = $category;
+        $categoryId = $category ?? 1;
+        $request['category_id'] = $categoryId;
 
         try {
-            $headerBanner = $this->bannerService->getHeaderBanner($request);
-            $banners = $this->bannerService->getBanners($request);
+            $this->bannerService->getHeaderBanner($request);
+            $this->bannerService->getBanners($request);
 
-            $parentCategory = Category::findOrFail($category);
-
+            $parentCategory = Category::findOrFail($categoryId);
             $mainCategories = $parentCategory->children;
-            $returnData = [];
-            if(count($mainCategories) > 0) {    
-                foreach ($mainCategories as $mainCategory) {
 
-                    $allCategoryIds = $mainCategory
-                        ->getDescendantsAndSelf()
-                        ->pluck('id')
-                        ->toArray();
-                    $ads = Ad::whereIn('category_id', $allCategoryIds)->active()->approved()->orderBy('id','desc')->limit(10)->get();
-
-                    
-                    $returnData[] = [
-                        'category' => $mainCategory,
-                        'ads'      => $ads,
+            if ($mainCategories->isNotEmpty()) {
+                $returnData = $mainCategories->map(function (Category $category) {
+                    return [
+                        'category' => $category,
+                        'ads' => $this->retrieveAds($category, 10, false, true),
                     ];
-                }
+                })->toArray();
+
                 return view('front.ads', compact('returnData'));
-            } else {
-                $ads = Ad::where('category_id', $parentCategory->id)->active()->approved()->orderBy('id','desc')->paginate(50);
-                $returnData[] = [
-                    'category' => $parentCategory,
-                    'ads'      => $ads,
-                ];
-                return view('front.ads-list', compact('returnData'));
             }
 
+            $returnData = [[
+                'category' => $parentCategory,
+                'ads' => $this->retrieveAds($parentCategory, 50, true),
+            ]];
+
+            return view('front.ads-list', compact('returnData'));
         } catch (Exception $e) {
             Log::error('Error in get ads', ['error' => $e->getMessage()]);
-            return $this->errorResponse("Server Error", ResponseCode::GENERAL_ERROR);
+            return $this->errorResponse('Server Error', ResponseCode::GENERAL_ERROR);
         }
     }
     public function loadMoreAds(Request $request)
@@ -95,18 +81,24 @@ class AdController extends Controller
     }
 
 
-    public function ads(Request $request, $category = null) {
+    public function ads(Request $request, $category = null)
+    {
         try {
-            if(isset($category)) {
-                $category = Category::find($category);
-            } else {
-                $category = Category::find(1);
+            $categoryModel = Category::find($category ?? 1);
+
+            if (!$categoryModel) {
+                abort(404, 'Category not found');
             }
-            $ads = $this->adService->getAdsForWeb($category->id);
-            return view('front.ads-list', compact('ads', 'category'));
+
+            $ads = $this->adService->getAdsForWeb($categoryModel->id);
+
+            return view('front.ads-list', [
+                'ads' => $ads,
+                'category' => $categoryModel,
+            ]);
         } catch (Exception $e) {
             Log::error('Error in get ads', ['error' => $e->getMessage()]);
-            return $this->errorResponse("Server Error", ResponseCode::GENERAL_ERROR);
+            return $this->errorResponse('Server Error', ResponseCode::GENERAL_ERROR);
         }
     }
 
@@ -131,5 +123,24 @@ class AdController extends Controller
         //     return $this->errorResponse("Server Error",ResponseCode::GENERAL_ERROR);
         // }
 
+    }
+
+    /**
+     * Retrieve ads for a category with optional pagination.
+     */
+    private function retrieveAds(Category $category, int $limit, bool $paginate = false, bool $includeDescendants = false)
+    {
+        $categoryIds = $includeDescendants
+            ? $category->getDescendantsAndSelf()->pluck('id')->toArray()
+            : [$category->id];
+
+        $query = Ad::whereIn('category_id', $categoryIds)
+            ->active()
+            ->approved()
+            ->orderByDesc('id');
+
+        return $paginate
+            ? $query->paginate($limit)
+            : $query->limit($limit)->get();
     }
 }
