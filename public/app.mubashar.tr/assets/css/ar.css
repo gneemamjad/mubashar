@@ -1,0 +1,69 @@
+* {
+    direction: rtl;
+    text-align: right;
+    font-family: "Cairo", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+}
+
+.navbar-brand {
+    margin-right: unset;
+    margin-left: 16px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Cairo", sans-serif;
+    font-weight: 800;
+}
+
+.title,
+.items .content h4,
+.items .content p,
+.work-section .intro p,
+.work-section .items h4,
+.work-section .items p,
+.download-area h2,
+.download-area p,
+.download-area span,
+.contact-area h2,
+.contact-area p
+{
+    text-align: center;
+}
+.contact-info h2,
+.contact-info p{
+    text-align: right;
+}
+.list-group .list-group-item .icon.layout-2 {
+    margin-left: 0;
+}
+
+.list-group.list-group-horizontal .list-group-item:not(:last-child) {
+    margin-right: unset;
+    margin-left: 0.8rem;
+}
+
+.work-section .item::after {
+    right: unset;
+    left: -1rem;
+    transform: scaleX(-1);
+}
+
+.work-section .item:hover::after {
+    transform: scaleX(-1) translateX(5px) translateY(-50%);
+}
+
+#sapp-accordion .accordion-item .accordion-button::after {
+    left: unset;
+    right: calc(100% - 3rem);
+}
+
+.form-floating>label {
+    left:unset;
+    right: 0;
+}
+
+.social-icons i {
+    text-align: center;
+}

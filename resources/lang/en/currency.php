@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'currencies' => 'Currencies',
+    'currency_management' => 'Currency Management',
+    'add_new' => 'Add New Currency',
+    'currency_name' => 'Currency Name',
+    'currency_code' => 'Currency Code',
+    'exchange_rate' => 'Exchange Rate',
+    'actions' => 'Actions',
+    'edit' => 'Edit',
+    'delete' => 'Delete',
+    'save' => 'Save',
+    'cancel' => 'Cancel',
+    'are_you_sure' => 'Are you sure?',
+    'delete_confirm' => 'You won\'t be able to revert this!',
+    'success' => 'Success',
+    'currency_added' => 'Currency has been added successfully',
+    'currency_updated' => 'Currency has been updated successfully',
+    'currency_deleted' => 'Currency has been deleted successfully',
+    'from_currency' => 'From Currency',
+    'to_currency' => 'To Currency',
+    'manage_currencies' => 'Manage Exchange Rate',
+    'updated_successfully' => 'Updated successfully',
+    'failed_to_update_currency_rate' => 'Failed to update currency rate',
+]; 
