@@ -12,6 +12,7 @@
     @php
         $categoryModel = $category ?? ($returnData[0]['category'] ?? null);
         $adsCollection = $ads ?? ($returnData[0]['ads'] ?? collect());
+        $parentCategory = $parentCategory ?? ($returnData[0]['parentCategory'] ?? null);
     @endphp
 
     <div class="ads-page" dir="rtl">
@@ -19,8 +20,8 @@
             <div class="ads-section__header">
                 <h2 class="ads-section__title">{{ $categoryModel?->name ?? 'الإعلانات' }}</h2>
                 @if($categoryModel)
-                    <a class="ads-section__link" href="{{ route('landing', ['category' => $categoryModel->id]) }}">
-                        الرجوع للقسم
+                    <a class="ads-section__link" href="{{ route('landing', ['category' => $parentCategory]) }}">
+                        الرجوع للقسم السابق
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                         </svg>

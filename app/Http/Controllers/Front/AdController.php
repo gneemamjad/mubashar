@@ -44,18 +44,17 @@ class AdController extends Controller
                 $returnData = $mainCategories->map(function (Category $category) {
                     return [
                         'category' => $category,
-                        'ads' => $this->retrieveAds($category, 10, false, true),
+                        'ads' => $this->retrieveAds($category, 4, false, true),
                     ];
                 })->toArray();
 
                 return view('front.ads', compact('returnData'));
             }
-
             $returnData = [[
                 'category' => $parentCategory,
+                'parentCategory' => $parentCategory->parent_id,
                 'ads' => $this->retrieveAds($parentCategory, 50, true),
             ]];
-
             return view('front.ads-list', compact('returnData'));
         } catch (Exception $e) {
             Log::error('Error in get ads', ['error' => $e->getMessage()]);
