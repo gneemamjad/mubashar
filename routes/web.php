@@ -5,13 +5,11 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Web\PageController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Front\AdController;
 use App\Http\Controllers\FrontEndController;
-// use App\Http\Controllers\PageController;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -90,19 +88,5 @@ Route::get('importcsvexcel', function () {
 
 
 Route::get('ads/{ad_number}', [AdController::class, 'show'])->name('showAd');
-
-
 Route::get('/adCat/{category?}', [AdController::class, 'home'])->name('landing');
 Route::get('/load-ads', [AdController::class, 'loadMoreAds'])->name('ads.load');
-    // Route::get('/ads', [PageController::class, 'real_estate'])->name('real_estate');
-    // Route::get('/vehicle_car', [PageController::class, 'vehicle'])->name('vehicle_car');
-
-    // Route::get('/ads-list/{category?}', [AdController::class, 'ads'])->name('ads');
-
-    // Route::get('/ads/real_estate/{id}', [AdController::class, 'show'])->name('real_estate.show');
-    // Route::get('/vehicle_car/{id}', [PageController::class, 'vehicle_car_show'])->name('vehicle_car.show');
-
-
-    // Route::get('/login', [PageController::class, 'login'])->name('login');
-
-
