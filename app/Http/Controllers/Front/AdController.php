@@ -39,11 +39,13 @@ class AdController extends Controller
 
             $parentCategory = Category::findOrFail($categoryId);
             $mainCategories = $parentCategory->children;
-
+            $rootId = $parentCategory->getMainAncestorId();
+            
             if ($mainCategories->isNotEmpty()) {
                 $returnData = $mainCategories->map(function (Category $category) {
                     return [
                         'category' => $category,
+                        'rootId' => $rootId,
                         'ads' => $this->retrieveAds($category, 4, false, true),
                     ];
                 })->toArray();
@@ -53,6 +55,7 @@ class AdController extends Controller
             $returnData = [[
                 'category' => $parentCategory,
                 'parentCategory' => $parentCategory->parent_id,
+                'rootId' => $rootId,
                 'ads' => $this->retrieveAds($parentCategory, 50, true),
             ]];
             return view('front.ads-list', compact('returnData'));

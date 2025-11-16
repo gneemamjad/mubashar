@@ -1,3 +1,6 @@
+<?php 
+dd($rootId);
+?>
 <!DOCTYPE html>
 <html lang="ar" dir=rtl data-is-hyperloop=true data-is-async-local-storage=true
     class="scrollbar-gutter dir native vz2oe5x v1koiow6 vrbhsjc vgue9iu vyb6402"

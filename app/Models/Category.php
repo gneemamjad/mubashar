@@ -115,5 +115,20 @@ class Category extends Node
         return $this->hasMany(Category::class, 'parent_id', 'id')
                     ->with('children'); 
     }
+
+    public function getMainAncestorId()
+    {
+        if (is_null($this->parent_id)) {
+            return $this->id;
+        }
+
+        $ancestor = $this->ancestors()->first();
+
+        if (!$ancestor) {
+            return $this->id;
+        }
+
+        return $ancestor->id;
+    }
     
 }
